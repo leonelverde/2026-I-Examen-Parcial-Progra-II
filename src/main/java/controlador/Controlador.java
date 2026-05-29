@@ -50,4 +50,11 @@ public class Controlador {
         }
         return false;
     }
+
+    // --- MÉTODO DE ARRANQUE MVC ---
+    public void iniciar(javax.swing.JFrame ventana) {
+        ventana.setTitle("Sistema de Reclutamiento TI - UNMSM");
+        ventana.setLocationRelativeTo(null); // Centra la ventana en la pantalla
+        ventana.setVisible(true); // Muestra la interfaz
+    }
 }
