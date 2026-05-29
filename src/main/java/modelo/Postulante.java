@@ -28,11 +28,30 @@ public class Postulante {
         this.contadorPostulaciones = 0;
     }
     
-    public boolean asignarGradoEstudio(GradoEstudio grado){return false;}
+    public boolean asignarGradoEstudio(GradoEstudio grado){
+        this.gradoEstudio = grado;
+        return false;
+    }
     
-    public boolean postular(Oferta oferta){return false;}
+    public boolean postular(Oferta oferta){
+        //Verificar si el arreglo no esta lleno
+        if (this.contadorPostulaciones < this.postulaciones.length) {
+            Postulacion nueva = new Postulacion(new Date(), oferta);
+            this.postulaciones[this.contadorPostulaciones] = nueva;
+            this.contadorPostulaciones++;
+        }
+        return false; //Arreglo lleno
+    }
     
-    public boolean anularPostulacion(Postulacion postulacion){return false;}
+    public boolean anularPostulacion(Postulacion postulacion){
+        for (int i = 0; i < this.contadorPostulaciones; i++) {
+            if (this.postulaciones[i] == postulacion) {
+                this.postulaciones[i].anular(); 
+                return true;
+            }
+        }
+        return false;
+    }
     
-    public Postulacion[] getPostulaciones(){return null;}
+    public Postulacion[] getPostulaciones(){return this.postulaciones;}
 }
