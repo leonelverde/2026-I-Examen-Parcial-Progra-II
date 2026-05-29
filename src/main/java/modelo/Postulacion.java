@@ -15,5 +15,10 @@ public class Postulacion {
         this.anulado = false;
         this.fechaAnulacion = null;
         this.oferta = oferta;
-    } 
+    }
+    
+    public void anular(){
+        this.anulado = true;
+        this.fechaAnulacion = new Date();
+    }
 }

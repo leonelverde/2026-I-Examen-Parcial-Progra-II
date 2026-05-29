@@ -20,13 +20,38 @@ public class Oferta {
         this.fechaInicio = fechaInicio;
         this.fechaTermino = fechaTermino;
         
-        this.requisitos = new Requisito[20];
+        this.requisitos = new Requisito[15];
         this.contadorRequisitos = 0;
     }
     
-    public boolean agregarRequisito(int orden, String descripcion){return false;}
+    public boolean agregarRequisito(int orden, String descripcion){
+        // Verificar si el arreglo no esta lleno
+        if(this.contadorRequisitos < this.requisitos.length){
+            Requisito nuevoReq = new Requisito(orden, descripcion);
+            this.requisitos[this.contadorRequisitos] = nuevoReq;
+            this.contadorRequisitos++;
+            return true;
+        }
+        
+        return false; //Arreglo lleno
+    }
     
-    public Requisito[] getRequisitos(){return null;}
+    public boolean eliminarRequisito(int orden){
+        //Algoritmo de eliminacion con desplazamiento
+        for(int i = 0; i < this.contadorRequisitos; i++){
+            if(this.requisitos[i].getOrden() == orden){
+                //Desplazar elementos hacia la izquierda
+                for(int j = i; j < this.contadorRequisitos - 1; j++){
+                    this.requisitos[j] = this.requisitos[j+1];
+                }
+                this.requisitos[this.contadorRequisitos - 1] = null;
+                this.contadorRequisitos--;
+               return true;
+            }
+        }
+        return false; 
+    }
+        
+    public Requisito[] getRequisitos(){return this.requisitos;}
     
-    public boolean eliminarRequisito(int orden){return false;}
 }
